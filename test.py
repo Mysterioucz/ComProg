@@ -1,20 +1,25 @@
-n = int(input().strip())
-point= {}
-seq = []
-def step(x):
-    return seq.index(x)
-for i in range(n):
-    st_id,score = input().split()
-    faculty = st_id[-2:]
-    if faculty in point:
-        point[faculty][0] += int(score)
-        point[faculty][1] += 1
+"""Donut"""
+import math
+def main():
+    """Donut"""
+    a = abs(int(input()))
+    b = abs(int(input()))
+    c = abs(int(input()))
+    d = abs(int(input()))
+    if not a and not b and not c and not d:
+        print("0", "0")
+    elif d < b:
+        print(d * a, d)
+    elif not c:
+        print(d * a, d)
+    elif not d:
+        print(d, c)
     else:
-        seq.append(faculty)
-        point[faculty] = [int(score),1]
-avg_score = [[point[k][0]/point[k][1],k] for k in point]
-max_avg = max(avg_score)[0]
-top_faculty = [e[1] for e in avg_score if e[0] == max_avg ]
-top_faculty.sort(key=step)
-for e in top_faculty:
-    print(e)
+        setdonut = b + c
+        cost = b * a
+        mindonut = d // setdonut
+        total = mindonut * cost
+        alldonut = (mindonut * setdonut) + (d-(mindonut * setdonut))
+        print(total, alldonut)
+
+main()

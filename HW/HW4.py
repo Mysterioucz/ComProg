@@ -68,14 +68,13 @@ def top_k_words(word_count_dict, k):
     res,c,pre_value = [],1,list_word[0][1]
     for word,count in list_word:
         if count == pre_value:
-            c += 1
-            res.append(word)
+            pass
         elif c <= k:
-            c += 1
             pre_value = count
-            res.append(word)
         else:
             break
+        c += 1
+        res.append(word)
     return res
             
 def count_word_summary(file_in, file_out, k, year, country, platform):
