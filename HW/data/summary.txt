@@ -1,1 +1,15 @@
-No data
+#culinaryadventure:1
+#streetfooddelights:1
+adventure:1
+aromas:1
+bustling:1
+connoisseur:1
+culinary:1
+diverse:1
+flavors:1
+food:1
+heart:1
+indulges:1
+market:1
+savoring:1
+street:1
