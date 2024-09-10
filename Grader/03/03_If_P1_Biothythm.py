@@ -1,15 +1,13 @@
 import math
 bd, bm, by, d, m, y = [int(e) for e in input().split()]
+y -= 543
+days = [0,31,28,31,30,31,30,31,31,30,31,30,31]
 def dayyear(d,m,y):
-    y -= 543
-    days = [0,31,28,31,30,31,30,31,31,30,31,30,31]
     if y%400==0 or (y%4 == 0 and y%100 != 0 ):
         days[2] = 29
     s = (sum(days[:m])+d)
     return s
 def dayyearleft(d,m,y):
-    y -= 543
-    days = [0,31,28,31,30,31,30,31,31,30,31,30,31]
     if y%400==0 or (y%4 == 0 and y%100 != 0 ):
         days[2] = 29
     s = sum(days[:])-(sum(days[:m])+d)
