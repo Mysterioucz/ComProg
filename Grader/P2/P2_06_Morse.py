@@ -2,28 +2,30 @@ def T2M(text):
     res = ""
     for ch in text:
         if ch in pattern:
-            start = pattern.find(ch)+2
-            stop = pattern.find("[",start)
-            res += pattern[start:stop]+" "
+            res += pattern[ch]+" "
         else:
             return "Invalid : "+ text
     return res
 def M2T(code):
     res = ""
     code = code.split()
-    ptt = pattern.replace("["," ").replace("]"," ").split()
+    ptt = dict((v,k) for k,v in pattern.items())
     for m in code:
         if m in ptt:
-            ch = ptt[ptt.index(m)-1]
-            res += ch
+            res += ptt[m]
         else:
-            return "Invalid : "+m
+            return "Invalid : " + ' '.join(code)
     return res.strip()
 name = input().strip()
 file = open(name,'r')
 method = file.readline().strip()
-pattern = file.readline().strip()
+raw_pattern = file.readline().strip()
+pattern = dict()
 line  = file.readline().strip()
+i = raw_pattern.find("]")
+while i != -1 :
+    pattern[raw_pattern[i-1]] = raw_pattern[i+1:raw_pattern.find("[",i + 1)]
+    i = raw_pattern.find("]",i+1)
 if method == "T2M":
     while len(line) != 0:
         print(T2M(line))

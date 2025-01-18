@@ -1,24 +1,39 @@
-# def check(s1,s2):
-#     if len(s1) != len(s2):
-#         print("Invalid answer")
-#         return;
-#     count = 0
-#     for i in range(len(s1)): # A B C D E A A A // Sol[-1]
-#         if s1[i] == s2[i]:   # A A C D E B B B // Ans
-#             count += 1       # 0 1 2 3 4 5 6 7
-#     return count;            # -8 -7 -6 -5 -4 -3 -2 -1
-
-# s1 = input()
-# s2 = input()
-# check(s1,s2)
-
-# # While Loop
-# # For Loop
-# n = int(input())
-# for i in range(1,n+1):
-#     if i == 1:
-#         print("."*(n-1) + "*")
-#     elif i == n :
-#         print("*" * (2*n-1))
-#     else:
-#         print("." * (n-i) + "*" + "." * (2*(i-1)-1) + "*")
+def T2M(text):
+    res = ""
+    for ch in text:
+        if ch in pattern:
+            res += pattern[ch]+" "
+        else:
+            return "Invalid : "+ text
+    return res
+def M2T(code):
+    res = ""
+    code = code.split()
+    ptt = dict((v,k) for k,v in pattern.items())
+    for m in code:
+        if m in ptt:
+            res += ptt[m]
+        else:
+            return "Invalid : " + ' '.join(code)
+    return res.strip()
+name = input().strip()
+file = open(name,'r')
+method = file.readline().strip()
+raw_pattern = file.readline().strip()
+pattern = dict()
+line  = file.readline().strip()
+i = raw_pattern.find("]")
+while i != -1 :
+    pattern[raw_pattern[i-1]] = raw_pattern[i+1:raw_pattern.find("[",i + 1)]
+    i = raw_pattern.find("]",i+1)
+if method == "T2M":
+    while len(line) != 0:
+        print(T2M(line))
+        line = file.readline().strip()
+elif method == "M2T":
+    while len(line) != 0:
+            print(M2T(line))
+            line = file.readline().strip()
+else:
+    print("Invalid code")
+file.close()
